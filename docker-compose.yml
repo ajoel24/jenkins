@@ -1,28 +1,11 @@
 version: "3.7"
 
 services:
-  jenkins-dind:
-    image: docker:dind
-    hostname: jenkins-dind
-    container_name: jenkins-dind
-    privileged: true
-    ports:
-      - "3000:3000"
-      - "5000:5000"
-      - "2376:2376"
-    environment:
-      DOCKER_TLS_CERTDIR: /certs
-    volumes:
-      - jenkins-docker-certs:/certs/client
-      - jenkins-volume:/var/jenkins_home
-
   jenkins:
     image: ajoel24/jenkins:latest
     hostname: jenkins
     container_name: jenkins
     restart: on-failure
-    depends_on:
-      - jenkins-dind
     ports:
       - "9000:8080"
       - "50000:50000"
