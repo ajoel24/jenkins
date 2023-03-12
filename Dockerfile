@@ -12,10 +12,12 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
 RUN apt-get update && apt-get install -y docker-ce-cli
 
 FROM base
-ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false \ 
+    -Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Kolkata
+ENV CASC_JENKINS_CONFIG /usr/share/jenkins/ref/jenkins.yaml
 
 COPY config/plugins.txt /usr/share/jenkins/ref/plugins.txt
+COPY config/casc.yaml ${CASC_JENKINS_CONFIG}
 RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
 
-COPY config/configuration-as-code.yaml /var/jenkins_home/casc.yaml
 USER jenkins
