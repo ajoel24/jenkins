@@ -13,7 +13,6 @@ services:
       JENKINS_ADMIN_ID: "admin"
       JENKINS_ADMIN_PASSWORD: "admin"
     volumes:
-      - $(which docker):/usr/bin/docker
       - /var/lib/docker.sock:/var/lib/docker.sock
       - jenkins-volume:/var/jenkins_home/
 
