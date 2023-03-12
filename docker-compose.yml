@@ -10,14 +10,12 @@ services:
       - "9000:8080"
       - "50000:50000"
     environment:
+      DOCKER_HOST: unix:///var/run/docker.sock
       JENKINS_ADMIN_ID: "admin"
       JENKINS_ADMIN_PASSWORD: "admin"
-      DOCKER_HOST: "tcp://docker:2376"
-      DOCKER_CERT_PATH: /certs/client
-      DOCKER_TLS_VERIFY: 1
     volumes:
+      - /var/lib/docker.sock:/var/lib/docker.sock
       - jenkins-volume:/var/jenkins_home/
-      - jenkins-docker-certs:/certs/client:ro
 
   sonarqube:
     image: sonarqube:9.9.0-community
@@ -34,7 +32,6 @@ services:
 
 volumes:
   jenkins-volume:
-  jenkins-docker-certs:
   sonarqube-data:
   sonarqube-extensions:
   sonarqube-logs:
