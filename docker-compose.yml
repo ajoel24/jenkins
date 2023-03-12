@@ -16,9 +16,25 @@ services:
       DOCKER_CERT_PATH: /certs/client
       DOCKER_TLS_VERIFY: 1
     volumes:
-      - "jenkins-volume:/var/jenkins_home/"
-      - "jenkins-docker-certs:/certs/client:ro"
+      - jenkins-volume:/var/jenkins_home/
+      - jenkins-docker-certs:/certs/client:ro
+
+  sonarqube:
+    image: sonarqube:9.9.0-community
+    depends_on:
+      - jenkins
+    hostname: sonarqube
+    container_name: sonarqube
+    ports:
+      - "9001:9000"
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data/
+      - sonarqube-extensions:/opt/sonarqube/extensions/
+      - sonarqube-logs:/opt/sonarqube/logs/
 
 volumes:
   jenkins-volume:
   jenkins-docker-certs:
+  sonarqube-data:
+  sonarqube-extensions:
+  sonarqube-logs:
