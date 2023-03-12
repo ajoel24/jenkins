@@ -5,6 +5,8 @@ build-timeout:latest
 cloudbees-folder:latest
 configuration-as-code:latest
 credentials-binding:latest
+docker-plugin:1.3.0
+docker-workflow:563.vd5d2e5c4007f
 email-ext:latest
 extended-choice-parameter:latest
 git:latest
