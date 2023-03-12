@@ -10,10 +10,10 @@ services:
       - "9000:8080"
       - "50000:50000"
     environment:
-      DOCKER_HOST: unix:///var/run/docker.sock
       JENKINS_ADMIN_ID: "admin"
       JENKINS_ADMIN_PASSWORD: "admin"
     volumes:
+      - $(which docker):/usr/bin/docker
       - /var/lib/docker.sock:/var/lib/docker.sock
       - jenkins-volume:/var/jenkins_home/
 
