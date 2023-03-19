@@ -12,6 +12,13 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
   $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 RUN apt-get update && apt-get install -y docker-ce-cli
 
+# Install SonarQube Scanner
+WORKDIR /opt/sonarqube
+RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
+RUN unzip sonar-scanner-cli-4.8.0.2856-linux.zip
+RUN mv sonar-scanner-cli-4.8.0.2856-linux sonar-scanner-cli
+
+WORKDIR /
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false \ 
     -Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Kolkata
 ENV CASC_JENKINS_CONFIG /usr/share/jenkins/ref/jenkins.yaml
