@@ -16,12 +16,14 @@ RUN apt-get update && apt-get install -y docker-ce-cli wget
 WORKDIR /opt/sonarqube
 RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
 RUN unzip sonar-scanner-cli-4.8.0.2856-linux.zip
+RUN rm -rf sonar-scanner-cli-4.8.0.2856-linux.zip
 
 WORKDIR /
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false \ 
     -Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Kolkata
 ENV CASC_JENKINS_CONFIG /usr/share/jenkins/ref/jenkins.yaml
 ENV PLUGINS_FILE /usr/share/jenkins/ref/plugins.txt
+ENV SONAR_RUNNER_HOME /opt/sonarqube/sonar-scanner-cli-4.8.0.2856-linux
 
 COPY config/plugins.txt ${PLUGINS_FILE}
 COPY config/casc.yaml ${CASC_JENKINS_CONFIG}
