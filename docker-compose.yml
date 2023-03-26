@@ -17,7 +17,8 @@ services:
   jenkins:
     image: ajoel24/jenkins:latest
     links:
-      - "jenkins-docker"
+      - jenkins-docker
+      - sonarqube
     hostname: jenkins
     container_name: jenkins
     restart: on-failure
@@ -36,8 +37,6 @@ services:
 
   sonarqube:
     image: sonarqube:9.9.0-community
-    depends_on:
-      - jenkins
     hostname: sonarqube
     container_name: sonarqube
     ports:
