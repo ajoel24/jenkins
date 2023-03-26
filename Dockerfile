@@ -19,6 +19,11 @@ RUN unzip sonar-scanner-cli-4.8.0.2856-linux.zip
 RUN rm -rf sonar-scanner-cli-4.8.0.2856-linux.zip
 RUN mv sonar-scanner-4.8.0.2856-linux sonar-scanner-cli
 
+# Install Snyk Scanner
+RUN curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
+RUN chmod +x ./snyk
+RUN mv ./snyk /usr/local/bin/
+
 WORKDIR /
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false \ 
     -Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Kolkata
