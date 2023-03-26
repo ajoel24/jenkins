@@ -20,9 +20,9 @@ RUN rm -rf sonar-scanner-cli-4.8.0.2856-linux.zip
 RUN mv sonar-scanner-4.8.0.2856-linux sonar-scanner-cli
 
 # Install Snyk Scanner
-RUN curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
-RUN chmod +x ./snyk
-RUN mv ./snyk /usr/local/bin/
+RUN curl https://static.snyk.io/cli/latest/snyk-linux -o snyk-linux
+RUN chmod +x ./snyk-linux
+RUN mv ./snyk-linux /usr/local/bin/
 
 WORKDIR /
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false \ 
