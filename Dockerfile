@@ -10,19 +10,7 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
   signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
   https://download.docker.com/linux/debian \
   $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
-RUN apt-get update && apt-get install -y docker-ce-cli wget
-
-# Install SonarQube Scanner
-WORKDIR /opt/sonarqube
-RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
-RUN unzip sonar-scanner-cli-4.8.0.2856-linux.zip
-RUN rm -rf sonar-scanner-cli-4.8.0.2856-linux.zip
-RUN mv sonar-scanner-4.8.0.2856-linux sonar-scanner-cli
-
-# Install Snyk Scanner
-RUN curl https://static.snyk.io/cli/latest/snyk-linux -o snyk-linux
-RUN chmod +x ./snyk-linux
-RUN mv ./snyk-linux /usr/local/bin/
+RUN apt-get update && apt-get install -y docker-ce-cli 
 
 WORKDIR /
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false \ 
