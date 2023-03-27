@@ -21,7 +21,6 @@ pam-auth:1.10
 pipeline-github-lib:42.v0739460cda_c4
 pipeline-stage-view:2.31
 sonar:2.15
-snyk-security-scanner:3.2.6
 ssh-slaves:2.877.v365f5eb_a_b_eec
 ssh-agent:327.v230ecd01f86f
 timestamper:1.23
