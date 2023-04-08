@@ -8,6 +8,7 @@ services:
       - "2376:2376"
     hostname: docker
     container_name: jenkins-docker
+    restart: on-failure
     environment:
       DOCKER_TLS_CERTDIR: /certs
     volumes:
@@ -39,6 +40,7 @@ services:
     image: sonarqube:9.9.0-community
     hostname: sonarqube
     container_name: sonarqube
+    restart: on-failure
     ports:
       - "9001:9000"
     volumes:

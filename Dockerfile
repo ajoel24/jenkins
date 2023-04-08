@@ -1,4 +1,4 @@
-ARG tag=2.387.1-lts-jdk11
+ARG tag=2.387.2-lts-jdk11
 
 # Build base image for Docker
 FROM jenkins/jenkins:${tag}
