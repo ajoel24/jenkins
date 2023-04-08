@@ -17,7 +17,6 @@ ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false \
     -Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Kolkata
 ENV CASC_JENKINS_CONFIG /usr/share/jenkins/ref/jenkins.yaml
 ENV PLUGINS_FILE /usr/share/jenkins/ref/plugins.txt
-ENV SONAR_RUNNER_HOME /opt/sonarqube/sonar-scanner-cli
 
 COPY config/plugins.txt ${PLUGINS_FILE}
 COPY config/casc.yaml ${CASC_JENKINS_CONFIG}
