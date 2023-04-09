@@ -19,9 +19,11 @@ ldap:671.v2a_9192a_7419d
 mailer:448.v5b_97805e3767
 matrix-auth:3.1.6
 pam-auth:1.10
-pipeline-github-lib:42.v0739460cda_c4
-pipeline-stage-view:2.32
 pipeline-build-step:488.v8993df156e8d
+pipeline-github-lib:42.v0739460cda_c4
+pipeline-groovy-lib:629.vb_5627b_ee2104
+pipeline-stage-view:2.32
+pipeline-utility-steps:2.15.1
 sonar:2.15
 ssh-slaves:2.877.v365f5eb_a_b_eec
 ssh-agent:327.v230ecd01f86f
