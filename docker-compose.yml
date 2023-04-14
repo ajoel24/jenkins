@@ -1,8 +1,25 @@
 version: "3.7"
 
 services:
+  jenkins-docker:
+    image: docker:dind
+    privileged: true
+    ports:
+      - "2376:2376"
+    hostname: docker
+    container_name: jenkins-docker
+    restart: on-failure
+    environment:
+      DOCKER_TLS_CERTDIR: /certs
+    volumes:
+      - jenkins-docker-certs:/certs/client
+      - jenkins-volume:/var/jenkins_home
+
   jenkins:
     image: ajoel24/jenkins:latest
+    links:
+      - jenkins-docker
+      - sonarqube
     hostname: jenkins
     container_name: jenkins
     restart: on-failure
@@ -10,15 +27,30 @@ services:
       - "9000:8080"
       - "50000:50000"
     environment:
-      JENKINS_ADMIN_ID: "admin"
-      JENKINS_ADMIN_PASSWORD: "admin"
-      DOCKER_HOST: "tcp://docker:2376"
+      DOCKER_HOST: tcp://docker:2376
       DOCKER_CERT_PATH: /certs/client
       DOCKER_TLS_VERIFY: 1
+      JENKINS_ADMIN_ID: "admin"
+      JENKINS_ADMIN_PASSWORD: "admin"
     volumes:
-      - "jenkins-volume:/var/jenkins_home/"
-      - "jenkins-docker-certs:/certs/client:ro"
+      - jenkins-volume:/var/jenkins_home/
+      - jenkins-docker-certs:/certs/client:ro
+
+  sonarqube:
+    image: sonarqube:9.9.0-community
+    hostname: sonarqube
+    container_name: sonarqube
+    restart: on-failure
+    ports:
+      - "9001:9000"
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data/
+      - sonarqube-extensions:/opt/sonarqube/extensions/
+      - sonarqube-logs:/opt/sonarqube/logs/
 
 volumes:
   jenkins-volume:
   jenkins-docker-certs:
+  sonarqube-data:
+  sonarqube-extensions:
+  sonarqube-logs:
