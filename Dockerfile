@@ -1,4 +1,5 @@
 ARG tag=2.387.2-lts-jdk11
+ARG docker-compose-version=1.29.2
 
 # Build base image for Docker
 FROM jenkins/jenkins:${tag}
@@ -10,7 +11,9 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
   signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
   https://download.docker.com/linux/debian \
   $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
-RUN apt-get update && apt-get install -y docker-ce-cli docker-compose
+RUN apt-get update && apt-get install -y docker-ce-cli
+RUN curl -L "https://github.com/docker/compose/releases/download/${docker-compose-version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
 
 WORKDIR /
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false \ 
