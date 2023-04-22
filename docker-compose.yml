@@ -32,6 +32,8 @@ services:
       DOCKER_TLS_VERIFY: 1
       JENKINS_ADMIN_ID: "admin"
       JENKINS_ADMIN_PASSWORD: "admin"
+      VIRTUAL_HOST: jenkins.local
+      VIRTUAL_PORT: 8080
     volumes:
       - jenkins-volume:/var/jenkins_home/
       - jenkins-docker-certs:/certs/client:ro
@@ -47,6 +49,16 @@ services:
       - sonarqube-data:/opt/sonarqube/data/
       - sonarqube-extensions:/opt/sonarqube/extensions/
       - sonarqube-logs:/opt/sonarqube/logs/
+    environment:
+      VIRTUAL_HOST: sonarqube.local
+      VIRTUAL_PORT: 9000
+
+  nginx:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
 
 volumes:
   jenkins-volume:
