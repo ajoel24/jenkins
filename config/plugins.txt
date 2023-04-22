@@ -28,6 +28,7 @@ pipeline-groovy-lib:656.va_a_ceeb_6ffb_f7
 pipeline-stage-view:2.32
 pipeline-utility-steps:2.15.1
 publish-over-ftp:1.17
+rebuild:1.34
 script-security:1244.ve463715a_f89c
 sonar:2.15
 ssh-slaves:2.877.v365f5eb_a_b_eec
