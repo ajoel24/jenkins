@@ -4,6 +4,13 @@ Quickly setup a Jenkins server, powered by Docker.
 
 ### Installation
 
+Add the following to `/etc/hosts/`:
+
+```sh
+127.0.0.1 sonarqube.local
+127.0.0.1 jenkins.local
+```
+
 #### Option 1: Using Docker Compose
 
 Clone the repository and run the docker-compose.yml file
