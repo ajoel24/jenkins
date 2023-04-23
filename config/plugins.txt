@@ -33,6 +33,7 @@ script-security:1244.ve463715a_f89c
 sonar:2.15
 ssh-slaves:2.877.v365f5eb_a_b_eec
 ssh-agent:327.v230ecd01f86f
+swarm:3.40
 timestamper:1.24
 token-macro:359.vb_cde11682e0c
 workflow-aggregator:596.v8c21c963d92d
